@@ -17,5 +17,7 @@ export interface Torch {
 
 export interface IAppCssState {
 	scale: number;
+	previewMode: boolean;
 	setScale: (scale: number) => any;
+	setPreviewMode: (mode: boolean) => any;
 }

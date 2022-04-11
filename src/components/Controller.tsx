@@ -1,5 +1,5 @@
 import React from 'react';
-import Draggable from 'react-draggable';
+import { Rnd } from 'react-rnd';
 import { IoFlashlightSharp, IoTrash, IoAdd, IoRemove } from 'react-icons/io5';
 import { useAppCssState, useTorchState } from '../state';
 import { Button } from './Button';
@@ -47,8 +47,8 @@ const Controller = () => {
 	};
 
 	return (
-		<Draggable axis="both">
-			<div className={classes.controller}>
+		<Rnd className={classes.controller} enableResizing={false}>
+			<div className={classes.container}>
 				<Button clickHandler={() => handleAddTorch()}>
 					<IoFlashlightSharp size={'20px'} />
 				</Button>
@@ -63,7 +63,7 @@ const Controller = () => {
 				</Button>
 				<Button clickHandler={() => null}>test</Button>
 			</div>
-		</Draggable>
+		</Rnd>
 	);
 };
 
