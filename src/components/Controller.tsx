@@ -1,6 +1,6 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-
+import { IoFlashlightSharp, IoTrash, IoAdd, IoRemove } from 'react-icons/io5';
 import { useAppCssState, useTorchState } from '../state';
 import { Button } from './Button';
 
@@ -49,10 +49,18 @@ const Controller = () => {
 	return (
 		<Draggable axis="both">
 			<div className={classes.controller}>
-				<Button clickHandler={() => handleAddTorch()}>+</Button>
-				<Button clickHandler={() => handleRemoveTorch()}>X</Button>
-				<Button clickHandler={() => handleSetScale('increment')}>inc</Button>
-				<Button clickHandler={() => handleSetScale('decrement')}>dec</Button>
+				<Button clickHandler={() => handleAddTorch()}>
+					<IoFlashlightSharp size={'20px'} />
+				</Button>
+				<Button clickHandler={() => handleRemoveTorch()}>
+					<IoTrash size={'20px'} />
+				</Button>
+				<Button clickHandler={() => handleSetScale('increment')}>
+					<IoAdd size={'20px'} />
+				</Button>
+				<Button clickHandler={() => handleSetScale('decrement')}>
+					<IoRemove size={'20px'} />
+				</Button>
 				<Button clickHandler={() => null}>test</Button>
 			</div>
 		</Draggable>
