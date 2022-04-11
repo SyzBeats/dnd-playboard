@@ -1,0 +1,48 @@
+.torch {
+	width: 25rem;
+	height: 25rem;
+	background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.05) 100%);
+	z-index: 10;
+	position: absolute;
+}
+
+.torch:hover {
+	cursor: pointer;
+}
+.round {
+	border-radius: 50%;
+}
+
+.size-tiny {
+	width: 5rem;
+	height: 5rem;
+}
+
+.size-small {
+	width: 10rem;
+	height: 10rem;
+}
+
+.size-medium {
+	width: 15rem;
+	height: 15rem;
+}
+
+.size-big {
+	width: 20rem;
+	height: 20rem;
+}
+
+.size-large {
+	width: 25rem;
+	height: 25rem;
+}
+
+.size-huge {
+	width: 30rem;
+	height: 30rem;
+}
+
+.red {
+	background: #ff0000;
+}
