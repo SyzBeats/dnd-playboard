@@ -1,36 +1,49 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 
-import { useTorchState } from '../state';
+import { useAppCssState, useTorchState } from '../state';
 import { Button } from './Button';
 
 import classes from './controller.module.css';
 
 const Controller = () => {
-	const addTorch = useTorchState(state => state.addTorch);
-	const removeTorch = useTorchState(state => state.removeTorch);
-	const currentTorch = useTorchState(state => state.currentTorch);
+	const torchState = useTorchState(state => ({
+		addTorch: state.addTorch,
+		removeTorch: state.removeTorch,
+		currentTorch: state.currentTorch,
+	}));
+
+	const appCssState = useAppCssState(state => ({
+		scale: state.scale,
+		setScale: state.setScale,
+	}));
 
 	const handleAddTorch = () => {
-		addTorch({
+		torchState.addTorch({
 			id: `torch-${Math.random()}`,
-			x: 0,
-			y: 0,
+			x: 25,
+			y: 25,
 			round: false,
 			size: 'small',
 		});
 	};
 
 	const handleRemoveTorch = () => {
-		if (!currentTorch) {
+		if (!torchState.currentTorch) {
 			return;
 		}
 
-		removeTorch(currentTorch.id);
+		torchState.removeTorch(torchState.currentTorch.id);
 	};
 
-	const handleIncreaseContainerSize = () => {
-		// add 20vh to the container height
+	const handleSetScale = (operator: 'increment' | 'decrement') => {
+		if (operator === 'increment') {
+			appCssState.setScale(appCssState.scale + 0.3);
+		}
+
+		if (operator === 'decrement') {
+			appCssState.setScale(appCssState.scale - 0.3);
+		}
 	};
 
 	return (
@@ -38,8 +51,8 @@ const Controller = () => {
 			<div className={classes.controller}>
 				<Button clickHandler={() => handleAddTorch()}>+</Button>
 				<Button clickHandler={() => handleRemoveTorch()}>X</Button>
-				<Button clickHandler={() => null}>inc</Button>
-				<Button clickHandler={() => null}>dec</Button>
+				<Button clickHandler={() => handleSetScale('increment')}>inc</Button>
+				<Button clickHandler={() => handleSetScale('decrement')}>dec</Button>
 				<Button clickHandler={() => null}>test</Button>
 			</div>
 		</Draggable>

@@ -8,14 +8,14 @@ const Playground = () => {
 	const torches = useTorchState(state => state.torches);
 
 	return (
-		<div>
+		<>
 			<div className={classes.layer}>
 				{torches.map(torch => (
 					<Torch id={torch.id} key={torch.id} x={torch.x} y={torch.y} round={torch.round} size={torch.size} />
 				))}
 			</div>
 			<div className={classes.playground} />
-		</div>
+		</>
 	);
 };
 

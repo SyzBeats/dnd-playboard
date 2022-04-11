@@ -1,6 +1,6 @@
 import React from 'react';
-import Draggable from 'react-draggable'; // Both at the same time
-import { useTorchState } from '../state';
+import { Rnd } from 'react-rnd';
+import { useTorchState, useAppCssState } from '../state';
 
 import classes from './torch.module.css';
 
@@ -14,9 +14,15 @@ interface Props {
 
 const Torch = (props: Props) => {
 	const { x, y } = props;
+
 	const setCurrentTorch = useTorchState(state => state.setCurrentTorch);
 
 	const classList = [classes.torch];
+
+	// get the scale value
+	const appCssState = useAppCssState(state => ({
+		scale: state.scale,
+	}));
 
 	if (props.round) {
 		classList.push(classes.round);
@@ -27,18 +33,19 @@ const Torch = (props: Props) => {
 	}
 
 	return (
-		<Draggable
+		<Rnd
 			onMouseDown={() =>
 				setCurrentTorch({
 					...props,
 					round: !!props.round,
 				})
 			}
-			axis="both"
-			defaultPosition={{ x, y }}
+			className={classList.join(' ')}
+			default={{ x, y, width: 100, height: 100 }}
+			scale={appCssState.scale}
 		>
-			<div className={classList.join(' ')}></div>
-		</Draggable>
+			<div></div>
+		</Rnd>
 	);
 };
 

@@ -10,9 +10,11 @@ build a torch effect
 	height: 100vh;
 	background-image: url('../background.jpg');
 	background-size: contain;
-	background-position: center;
+	background-position: top left;
 	background-repeat: no-repeat;
-	overflow: hidden;
+
+	transform: scale(var(--scale));
+	transform-origin: left top;
 }
 
 .layer {
@@ -23,9 +25,11 @@ build a torch effect
 	height: 100vh;
 	background-image: url('../background.jpg');
 	background-size: contain;
-	background-position: center;
+	background-position: top left;
 	background-repeat: no-repeat;
 	mix-blend-mode: difference;
 	z-index: 1;
-	overflow: hidden;
+	transform-origin: left top;
+
+	transform: scale(var(--scale));
 }

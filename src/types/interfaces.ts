@@ -14,3 +14,8 @@ export interface Torch {
 	round: boolean;
 	size: string;
 }
+
+export interface IAppCssState {
+	scale: number;
+	setScale: (scale: number) => any;
+}

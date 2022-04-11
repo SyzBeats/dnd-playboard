@@ -1,7 +1,7 @@
 import create from 'zustand';
-import { IPlaygroundState, Torch } from '../types/interfaces';
+import { IAppCssState, IPlaygroundState, Torch } from '../types/interfaces';
 
-const torches = [{ id: `${Math.random()}`, x: 0, y: 0, round: true, size: 'small' }];
+const torches = [{ id: `${Math.random()}`, x: 50, y: 50, round: true, size: 'small' }];
 
 const useTorchState = create<IPlaygroundState>(set => ({
 	currentTorch: null,
@@ -12,4 +12,16 @@ const useTorchState = create<IPlaygroundState>(set => ({
 	setCurrentTorch: (torch: Torch) => set(state => ({ ...state, currentTorch: torch })),
 }));
 
-export { useTorchState };
+const useAppCssState = create<IAppCssState>(set => ({
+	scale: 1,
+	setScale: (scale: number) => {
+		return set(state => {
+			// set global custom property css scale
+			document.documentElement.style.setProperty('--scale', scale.toString());
+
+			return { ...state, scale };
+		});
+	},
+}));
+
+export { useTorchState, useAppCssState };
