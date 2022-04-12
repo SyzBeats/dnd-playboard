@@ -1,5 +1,4 @@
 import create from 'zustand';
-import torchStateService from './torch.state';
 
 import { IAppCssState, IPlaygroundState, Torch } from '../types/interfaces';
 
@@ -12,14 +11,6 @@ const useTorchState = create<IPlaygroundState>((set) => ({
 	addTorch: (torch: Torch) => set((state) => ({ ...state, torches: [...state.torches, torch] })),
 	removeTorch: (id: string) => set((state) => ({ ...state, torches: state.torches.filter((t) => t.id !== id) })),
 	setCurrentTorch: (torch: Torch) => set((state) => ({ ...state, currentTorch: torch })),
-	increaseTorchSize: (torch: Torch) => {
-		const newTorch = torchStateService.getIncreasedTorchSize(torch);
-		return set((state) => ({ ...state, currentTorch: newTorch }));
-	},
-	decreaseTorchState: (torch: Torch) => {
-		const newTorch = torchStateService.getDecreasedTorchSize(torch);
-		return set((state) => ({ ...state, currentTorch: newTorch }));
-	},
 }));
 
 /**

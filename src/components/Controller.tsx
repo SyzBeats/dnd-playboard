@@ -7,12 +7,14 @@ import { Button } from './Button';
 import classes from './controller.module.css';
 
 const Controller = () => {
+	// torch state handler
 	const torchState = useTorchState((state) => ({
 		addTorch: state.addTorch,
 		removeTorch: state.removeTorch,
 		currentTorch: state.currentTorch,
 	}));
 
+	// app state handler
 	const appCssState = useAppCssState((state) => ({
 		scale: state.scale,
 		setScale: state.setScale,
@@ -31,6 +33,10 @@ const Controller = () => {
 		});
 	};
 
+	/**
+	 * @description removing a torch from the playground
+	 * by clicking the button on the panel
+	 */
 	const handleRemoveTorch = () => {
 		if (!torchState.currentTorch) {
 			return;
@@ -39,6 +45,10 @@ const Controller = () => {
 		torchState.removeTorch(torchState.currentTorch.id);
 	};
 
+	/**
+	 * @description changing the size of field
+	 * @param operator decide if the scale should be increased or decreased
+	 */
 	const handleSetScale = (operator: 'increment' | 'decrement') => {
 		if (operator === 'increment') {
 			appCssState.setScale(appCssState.scale + 0.3);
@@ -64,7 +74,6 @@ const Controller = () => {
 				<Button clickHandler={() => handleSetScale('decrement')}>
 					<IoRemove size={'20px'} />
 				</Button>
-				<Button clickHandler={() => null}>test</Button>
 			</div>
 		</Rnd>
 	);

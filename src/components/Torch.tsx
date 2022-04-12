@@ -15,21 +15,17 @@ interface Props {
 const Torch = (props: Props) => {
 	const { x, y } = props;
 
-	const setCurrentTorch = useTorchState(state => state.setCurrentTorch);
+	const setCurrentTorch = useTorchState((state) => state.setCurrentTorch);
 
 	const classList = [classes.torch];
 
 	// get the scale value
-	const appCssState = useAppCssState(state => ({
+	const appCssState = useAppCssState((state) => ({
 		scale: state.scale,
 	}));
 
-	if (props.round) {
-		classList.push(classes.round);
-	}
-
 	if (props.size) {
-		classList.push(classes[`size-${props.size}`]);
+		classList.push(classes[props.size]);
 	}
 
 	return (

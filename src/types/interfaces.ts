@@ -5,8 +5,6 @@ export interface IPlaygroundState {
 	addTorch: (torch: Torch) => any;
 	setCurrentTorch: (torch: Torch) => any;
 	removeTorch: (id: string) => any;
-	increaseTorchSize: (torch: Torch) => any;
-	decreaseTorchState: (torch: Torch) => any;
 }
 
 export interface Torch {
