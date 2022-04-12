@@ -7,17 +7,20 @@ import { Button } from './Button';
 import classes from './controller.module.css';
 
 const Controller = () => {
-	const torchState = useTorchState(state => ({
+	const torchState = useTorchState((state) => ({
 		addTorch: state.addTorch,
 		removeTorch: state.removeTorch,
 		currentTorch: state.currentTorch,
 	}));
 
-	const appCssState = useAppCssState(state => ({
+	const appCssState = useAppCssState((state) => ({
 		scale: state.scale,
 		setScale: state.setScale,
 	}));
 
+	/**
+	 * @description adding a new torch with default values
+	 */
 	const handleAddTorch = () => {
 		torchState.addTorch({
 			id: `torch-${Math.random()}`,

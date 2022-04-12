@@ -16,33 +16,33 @@
 }
 
 .size-tiny {
+	width: 3rem;
+	height: 3rem;
+}
+
+.size-small {
 	width: 5rem;
 	height: 5rem;
 }
 
-.size-small {
-	width: 10rem;
-	height: 10rem;
+.size-medium {
+	width: 8rem;
+	height: 8rem;
 }
 
-.size-medium {
+.size-big {
+	width: 12rem;
+	height: 12rem;
+}
+
+.size-large {
 	width: 15rem;
 	height: 15rem;
 }
 
-.size-big {
-	width: 20rem;
-	height: 20rem;
-}
-
-.size-large {
-	width: 25rem;
-	height: 25rem;
-}
-
 .size-huge {
-	width: 30rem;
-	height: 30rem;
+	width: 18rem;
+	height: 18rem;
 }
 
 .red {
