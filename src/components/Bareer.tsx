@@ -6,7 +6,7 @@ const Bareer = () => {
   return (
     <div className={classes.wrapper}>
       <Rnd className={classes.bareer}>
-        <div>Bareer</div>
+        <div className={classes.content}></div>
       </Rnd>
     </div>
   );
