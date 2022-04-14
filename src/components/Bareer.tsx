@@ -13,7 +13,7 @@ const Bareer = () => {
       }}
       className={classes.bareer}
     >
-      <div>Bareer</div>;
+      <div>Bareer</div>
     </Rnd>
   );
 };
