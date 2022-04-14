@@ -1,9 +1,14 @@
+.wrapper {
+  width: 20rem;
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  z-index: 2000;
+  transform: translateX(-50%);
+}
+
 .controller {
   background: white;
-
-  transform: translateX(-50%);
-  z-index: 9999;
-
   border-radius: 0.75rem;
 }
 

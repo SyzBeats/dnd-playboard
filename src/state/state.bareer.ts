@@ -10,7 +10,7 @@ const useBareerState = create<IBareerState>((set) => ({
   removeBareer: (id: string) =>
     set((state) => ({
       ...state,
-      Bareeres: state.bareeres.filter((b) => b.id !== id),
+      bareeres: state.bareeres.filter((b) => b.id !== id),
     })),
   setCurrentBareer: (Bareer: IBareer) => set((state) => ({ ...state, currentBareer: Bareer })),
 }));
