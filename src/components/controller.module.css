@@ -1,10 +1,10 @@
 .wrapper {
-  width: 20rem;
+  width: 50rem;
   position: fixed;
   bottom: 10%;
   left: 50%;
-  z-index: 2000;
-  transform: translateX(-50%);
+  z-index: 10000;
+  transform: translate(-50%, -50%);
 }
 
 .controller {
@@ -13,6 +13,7 @@
 }
 
 .container {
+  width: 50rem;
   height: 8rem;
   display: flex;
   align-items: center;
