@@ -6,6 +6,7 @@ import { useAppCssState, useTorchState, useBareerState } from "../state";
 import { Button } from "./Button";
 
 import classes from "./controller.module.css";
+import { VscOpenPreview } from "react-icons/vsc";
 
 const Controller = () => {
   // torch state handler
@@ -13,18 +14,21 @@ const Controller = () => {
     add: state.addTorch,
     remove: state.removeTorch,
     current: state.currentTorch,
+    toggleShape: state.toggleCurrentTorchShape,
   }));
 
-  // torch state handler
+  // Bareer state handler
   const bareerState = useBareerState((state) => ({
     add: state.addBareer,
     current: state.currentBareer,
   }));
 
-  // app state handler
+  // App state handler
   const appCssState = useAppCssState((state) => ({
     scale: state.scale,
     setScale: state.setScale,
+    preview: state.previewMode,
+    setPreviewMode: state.setPreviewMode,
   }));
 
   /**
@@ -36,7 +40,7 @@ const Controller = () => {
       id: `torch-${Math.random()}`,
       x: 25,
       y: 25,
-      round: false,
+      round: true,
       size: "small",
     });
   };
@@ -81,6 +85,19 @@ const Controller = () => {
     }
   };
 
+  // toggle the app preview mode on/off
+  const handleTogglePreview = () => {
+    appCssState.setPreviewMode(!appCssState.preview);
+  };
+
+  const handleToggleShape = () => {
+    if (!torchState.current) {
+      return;
+    }
+
+    torchState.toggleShape(torchState?.current?.id);
+  };
+
   return (
     <div className={classes.wrapper}>
       <Rnd className={classes.controller} enableResizing={false}>
@@ -94,7 +111,7 @@ const Controller = () => {
           <Button clickHandler={() => handleAddBareer()}>
             <GiBrickWall size={"20px"} />
           </Button>
-          <Button clickHandler={() => handleAddBareer()}>
+          <Button clickHandler={() => handleToggleShape()}>
             <IoShapes size={"20px"} />
           </Button>
           <Button clickHandler={() => handleSetScale("increment")}>
@@ -102,6 +119,9 @@ const Controller = () => {
           </Button>
           <Button clickHandler={() => handleSetScale("decrement")}>
             <IoRemove size={"20px"} />
+          </Button>
+          <Button clickHandler={() => handleTogglePreview()}>
+            <VscOpenPreview size={"20px"} />
           </Button>
         </div>
       </Rnd>

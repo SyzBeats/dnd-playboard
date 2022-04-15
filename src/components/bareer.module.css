@@ -10,6 +10,10 @@
   height: 10rem;
 }
 
+.round {
+  border-radius: 50%;
+}
+
 .wrapper {
   z-index: 1000;
   position: fixed;

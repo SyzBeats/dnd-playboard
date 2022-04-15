@@ -28,6 +28,10 @@ const Torch = (props: Props) => {
     classList.push(classes[props.size]);
   }
 
+  if (props.round) {
+    classList.push(classes.round);
+  }
+
   return (
     <Rnd
       onMouseDown={() =>

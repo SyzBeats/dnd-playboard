@@ -22,6 +22,7 @@ export interface IPlaygroundState {
   addTorch: (torch: ITorch) => any;
   setCurrentTorch: (torch: ITorch) => any;
   removeTorch: (id: string) => any;
+  toggleCurrentTorchShape: (id: string) => any;
 }
 
 export interface IBareerState {
