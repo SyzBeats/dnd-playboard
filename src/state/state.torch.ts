@@ -13,21 +13,21 @@ const useTorchState = create<IPlaygroundState>((set) => ({
       torches: state.torches.filter((t) => t.id !== id),
     })),
   setCurrentTorch: (torch: ITorch) => set((state) => ({ ...state, currentTorch: torch })),
-  toggleCurrentTorchShape: () =>
+  toggleCurrentTorchShape: (id: string) =>
     set((state) => {
-      if (!state.currentTorch) {
-        return state;
+      if (!id) {
+        return { ...state };
       }
 
-      const { round, ...rest } = state.currentTorch;
+      const newTorches = state.torches.map((t) => {
+        if (t.id === id) {
+          return { ...t, round: !t.round };
+        }
 
-      return {
-        ...state,
-        currentTorch: {
-          ...rest,
-          round: !round,
-        },
-      };
+        return t;
+      });
+
+      return { ...state, torches: newTorches };
     }),
 }));
 

@@ -13,8 +13,6 @@ interface Props {
 }
 
 const Bareer = (props: Props) => {
-  const { x, y } = props;
-
   const setCurrentBareer = useBareerState((state) => state.setCurrentBareer);
 
   const classList = [classes.torch];
@@ -26,6 +24,10 @@ const Bareer = (props: Props) => {
 
   if (props.size) {
     classList.push(classes[props.size]);
+  }
+
+  if (props.round) {
+    classList.push(classes.round);
   }
 
   return (

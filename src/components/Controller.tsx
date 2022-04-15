@@ -1,7 +1,8 @@
 import React from "react";
-import { Rnd } from "react-rnd";
 import { IoFlashlightSharp, IoTrash, IoAdd, IoRemove, IoShapes } from "react-icons/io5";
 import { GiBrickWall } from "react-icons/gi";
+import { VscOpenPreview } from "react-icons/vsc";
+
 import { useAppCssState, useTorchState, useBareerState } from "../state";
 import { Button } from "./Button";
 
@@ -13,18 +14,21 @@ const Controller = () => {
     add: state.addTorch,
     remove: state.removeTorch,
     current: state.currentTorch,
+    toggleShape: state.toggleCurrentTorchShape,
   }));
 
-  // torch state handler
+  // Bareer state handler
   const bareerState = useBareerState((state) => ({
     add: state.addBareer,
     current: state.currentBareer,
   }));
 
-  // app state handler
+  // App state handler
   const appCssState = useAppCssState((state) => ({
     scale: state.scale,
     setScale: state.setScale,
+    preview: state.previewMode,
+    setPreviewMode: state.setPreviewMode,
   }));
 
   /**
@@ -36,7 +40,7 @@ const Controller = () => {
       id: `torch-${Math.random()}`,
       x: 25,
       y: 25,
-      round: false,
+      round: true,
       size: "small",
     });
   };
@@ -67,6 +71,18 @@ const Controller = () => {
     torchState.remove(torchState.current.id);
   };
 
+  const handleDragStart = (e: React.MouseEvent) => {
+    // add torch on new position
+    torchState.add({
+      name: `${Math.random()}`,
+      id: `torch-${Math.random()}`,
+      x: e.clientX / appCssState.scale,
+      y: e.clientY / appCssState.scale,
+      round: true,
+      size: "small",
+    });
+  };
+
   /**
    * @description changing the size of field
    * @param operator decide if the scale should be increased or decreased
@@ -81,30 +97,44 @@ const Controller = () => {
     }
   };
 
+  // toggle the app preview mode on/off
+  const handleTogglePreview = () => {
+    appCssState.setPreviewMode(!appCssState.preview);
+  };
+
+  const handleToggleShape = () => {
+    if (!torchState.current) {
+      return;
+    }
+
+    torchState.toggleShape(torchState?.current?.id);
+  };
+
   return (
     <div className={classes.wrapper}>
-      <Rnd className={classes.controller} enableResizing={false}>
-        <div className={classes.container}>
-          <Button clickHandler={() => handleAddTorch()}>
-            <IoFlashlightSharp size={"20px"} />
-          </Button>
-          <Button clickHandler={() => handleRemoveTorch()}>
-            <IoTrash size={"20px"} />
-          </Button>
-          <Button clickHandler={() => handleAddBareer()}>
-            <GiBrickWall size={"20px"} />
-          </Button>
-          <Button clickHandler={() => handleAddBareer()}>
-            <IoShapes size={"20px"} />
-          </Button>
-          <Button clickHandler={() => handleSetScale("increment")}>
-            <IoAdd size={"20px"} />
-          </Button>
-          <Button clickHandler={() => handleSetScale("decrement")}>
-            <IoRemove size={"20px"} />
-          </Button>
-        </div>
-      </Rnd>
+      <div className={classes.container}>
+        <Button clickHandler={() => handleAddTorch()} draggable dragHandler={(e) => handleDragStart(e)}>
+          <IoFlashlightSharp size={"20px"} />
+        </Button>
+        <Button clickHandler={() => handleRemoveTorch()}>
+          <IoTrash size={"20px"} />
+        </Button>
+        <Button clickHandler={() => handleAddBareer()}>
+          <GiBrickWall size={"20px"} />
+        </Button>
+        <Button clickHandler={() => handleToggleShape()}>
+          <IoShapes size={"20px"} />
+        </Button>
+        <Button clickHandler={() => handleSetScale("increment")}>
+          <IoAdd size={"20px"} />
+        </Button>
+        <Button clickHandler={() => handleSetScale("decrement")}>
+          <IoRemove size={"20px"} />
+        </Button>
+        <Button clickHandler={() => handleTogglePreview()}>
+          <VscOpenPreview size={"20px"} />
+        </Button>
+      </div>
     </div>
   );
 };
