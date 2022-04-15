@@ -9,6 +9,7 @@ import { IAppCssState } from "../types/interfaces";
 const useAppCssState = create<IAppCssState>((set) => ({
   scale: 1,
   previewMode: true,
+  backgroundImage: "",
   setScale: (scale: number) => {
     return set((state) => {
       // set global custom property css scale
@@ -18,6 +19,7 @@ const useAppCssState = create<IAppCssState>((set) => ({
     });
   },
   setPreviewMode: (mode: boolean) => set((state) => ({ ...state, previewMode: mode })),
+  setBackgroundImage: (image: string) => set((state) => ({ ...state, backgroundImage: image })),
 }));
 
 export default useAppCssState;

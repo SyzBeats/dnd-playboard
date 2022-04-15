@@ -36,6 +36,8 @@ export interface IBareerState {
 export interface IAppCssState {
   scale: number;
   previewMode: boolean;
+  backgroundImage: string;
+  setBackgroundImage: (image: string) => any;
   setScale: (scale: number) => any;
   setPreviewMode: (mode: boolean) => any;
 }
