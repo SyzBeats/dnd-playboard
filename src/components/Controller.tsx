@@ -1,6 +1,6 @@
 import React from "react";
 import { Rnd } from "react-rnd";
-import { IoFlashlightSharp, IoTrash, IoAdd, IoRemove } from "react-icons/io5";
+import { IoFlashlightSharp, IoTrash, IoAdd, IoRemove, IoShapes } from "react-icons/io5";
 import { GiBrickWall } from "react-icons/gi";
 import { useAppCssState, useTorchState, useBareerState } from "../state";
 import { Button } from "./Button";
@@ -91,14 +91,17 @@ const Controller = () => {
           <Button clickHandler={() => handleRemoveTorch()}>
             <IoTrash size={"20px"} />
           </Button>
+          <Button clickHandler={() => handleAddBareer()}>
+            <GiBrickWall size={"20px"} />
+          </Button>
+          <Button clickHandler={() => handleAddBareer()}>
+            <IoShapes size={"20px"} />
+          </Button>
           <Button clickHandler={() => handleSetScale("increment")}>
             <IoAdd size={"20px"} />
           </Button>
           <Button clickHandler={() => handleSetScale("decrement")}>
             <IoRemove size={"20px"} />
-          </Button>
-          <Button clickHandler={() => handleAddBareer()}>
-            <GiBrickWall size={"20px"} />
           </Button>
         </div>
       </Rnd>
