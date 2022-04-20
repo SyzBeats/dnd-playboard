@@ -19,7 +19,13 @@ const useAppCssState = create<IAppCssState>((set) => ({
     });
   },
   setPreviewMode: (mode: boolean) => set((state) => ({ ...state, previewMode: mode })),
-  setBackgroundImage: (image: string) => set((state) => ({ ...state, backgroundImage: image })),
+  setBackgroundImage: (image: string) =>
+    set((state) => {
+      // set global custom property css background image
+      document.documentElement.style.setProperty("--background-image", image);
+
+      return { ...state, backgroundImage: image };
+    }),
 }));
 
 export default useAppCssState;

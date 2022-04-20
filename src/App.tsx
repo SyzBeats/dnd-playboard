@@ -1,16 +1,14 @@
-import { Bareer } from "./components/Bareer";
-import { BareerLayer } from "./components/BareerLayer";
-import Controller from "./components/Controller";
-import { Playground } from "./components/Playground";
+import { Game } from "./components/Game";
+import { Uploader } from "./components/Uploader";
+import { useAppCssState } from "./state";
 
 function App() {
-  return (
-    <div className="App">
-      <Playground />
-      <Controller />
-      <BareerLayer />
-    </div>
-  );
+  // check if a background image is set
+  const appState = useAppCssState((state) => ({
+    backgroundImage: state.backgroundImage,
+  }));
+
+  return <div className="App">{!!appState.backgroundImage ? <Game /> : <Uploader />}</div>;
 }
 
 export default App;
