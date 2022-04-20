@@ -13,6 +13,8 @@ interface Props {
 }
 
 const Bareer = (props: Props) => {
+  const { x, y } = props;
+
   const setCurrentBareer = useBareerState((state) => state.setCurrentBareer);
 
   const classList = [classes.torch];
@@ -35,6 +37,7 @@ const Bareer = (props: Props) => {
       <Rnd
         className={classes.bareer}
         scale={appCssState.scale}
+        default={{ x, y, width: 100, height: 100 }}
         onMouseDown={() =>
           setCurrentBareer({
             ...props,

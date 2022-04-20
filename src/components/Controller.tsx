@@ -71,9 +71,21 @@ const Controller = () => {
     torchState.remove(torchState.current.id);
   };
 
-  const handleDragStart = (e: React.MouseEvent) => {
+  const handleDragTorch = (e: React.MouseEvent) => {
     // add torch on new position
     torchState.add({
+      name: `${Math.random()}`,
+      id: `torch-${Math.random()}`,
+      x: e.clientX / appCssState.scale,
+      y: e.clientY / appCssState.scale,
+      round: true,
+      size: "small",
+    });
+  };
+
+  const handleDragBareer = (e: React.MouseEvent) => {
+    // add torch on new position
+    bareerState.add({
       name: `${Math.random()}`,
       id: `torch-${Math.random()}`,
       x: e.clientX / appCssState.scale,
@@ -113,13 +125,13 @@ const Controller = () => {
   return (
     <div className={classes.wrapper}>
       <div className={classes.container}>
-        <Button clickHandler={() => handleAddTorch()} draggable dragHandler={(e) => handleDragStart(e)}>
+        <Button clickHandler={() => handleAddTorch()} draggable dragHandler={(e) => handleDragTorch(e)}>
           <IoFlashlightSharp size={"20px"} />
         </Button>
         <Button clickHandler={() => handleRemoveTorch()}>
           <IoTrash size={"20px"} />
         </Button>
-        <Button clickHandler={() => handleAddBareer()}>
+        <Button clickHandler={() => handleAddBareer()} draggable dragHandler={(e) => handleDragBareer(e)}>
           <GiBrickWall size={"20px"} />
         </Button>
         <Button clickHandler={() => handleToggleShape()}>
