@@ -71,13 +71,17 @@ const Controller = () => {
     torchState.remove(torchState.current.id);
   };
 
+  const calcCorrectedPosition = (axis: number) => {
+    return (axis - 50) / appCssState.scale;
+  };
+
   const handleDragTorch = (e: React.MouseEvent) => {
     // add torch on new position
     torchState.add({
       name: `${Math.random()}`,
       id: `torch-${Math.random()}`,
-      x: e.clientX / appCssState.scale,
-      y: e.clientY / appCssState.scale,
+      x: calcCorrectedPosition(e.clientX),
+      y: calcCorrectedPosition(e.clientY),
       round: true,
       size: "small",
     });
@@ -88,8 +92,8 @@ const Controller = () => {
     bareerState.add({
       name: `${Math.random()}`,
       id: `torch-${Math.random()}`,
-      x: e.clientX / appCssState.scale,
-      y: e.clientY / appCssState.scale,
+      x: calcCorrectedPosition(e.clientX),
+      y: calcCorrectedPosition(e.clientY),
       round: true,
       size: "small",
     });
