@@ -1,5 +1,6 @@
 :root {
   --scale: 1;
+  --background-image: url("./background.jpg");
 }
 
 *,
