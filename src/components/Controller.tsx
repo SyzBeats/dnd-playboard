@@ -77,7 +77,7 @@ const Controller = () => {
 	 * @returns the correct position on the current axis
 	 */
 	const calcCorrectedPosition = (axis: number) => {
-		return (axis - 50) / appCssState.scale;
+		return (axis - 50 * appCssState.scale) / appCssState.scale;
 	};
 
 	const handleDragTorch = (e: React.MouseEvent) => {
